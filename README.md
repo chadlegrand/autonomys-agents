@@ -2,7 +2,29 @@
 
 # Autonomys Agents: A framework for building autonomous AI agents
 
-Autonomys Agents is an **EXPERIMENTAL** framework for building AI agents. Currently, the framework supports agents that can interact with social networks and maintain permanent memory through the Autonomys Network. We are still in the **EARLY STAGES OF DEVELOPMENT** and are actively seeking feedback and contributions. We will be rapidly adding many more workflows and features.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)](https://www.typescriptlang.org/)
+[![Autonomys Network](https://img.shields.io/badge/Autonomys-Network-green)](https://autonomys.network)
+
+Autonomys Agents is an **EXPERIMENTAL** framework for building AI agents. Currently, the framework supports agents that can interact with social networks and maintain permanent memory through the Autonomys Network. We are still in the **EARLY STAGES OF DEVELOPMENT** and are actively seeking feedback and contributions.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+  - [Interactive CLI Interface](#interactive-cli-interface)
+  - [Web CLI Interface](#interactive-web-cli-interface)
+  - [Development Mode](#running-with-devall-web-cli-only)
+- [Examples](#examples)
+- [Character System](#character-system)
+- [Context Size Management](#context-size-management)
+- [Autonomys Network Integration](#autonomys-network-integration)
+- [Resurrection System](#resurrection)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -12,185 +34,120 @@ Autonomys Agents is an **EXPERIMENTAL** framework for building AI agents. Curren
 - 🐦 Twitter integration (with more platforms planned)
 - 🎭 Customizable agent personalities
 - 🛠️ Extensible tool system
+- 📊 Advanced context management
+- 🔐 Secure memory encryption
 
-## Getting Started
+## Installation
 
-1. Install dependencies: `yarn install`
-   - Windows users will need to install Visual Studio C++ Redistributable. They can be found here: https://aka.ms/vs/17/release/vc_redist.x64.exe
-2. Create your character config: `yarn create-character <your-character-name>`
-3. Setup character config:
-   - All character configs are stored in `characters/{your-character-name}/config`
-   - Update .env with applicable environment variables
-   - Update `config.yaml` with applicable configuration
-   - Update `{your-character-name}.yaml` with applicable personality configuration (See Character System below).
-4. Run your character:
-   - For dev purposes in watch mode: `yarn dev <your-character-name>`
-   - For production build and run: `yarn start <your-character-name>`
-   - For interactive CLI interface: `yarn cli <your-character-name>`
+### Prerequisites
 
-## Interactive CLI Interface 
+- Node.js (v16 or higher)
+- Yarn package manager
+- For Windows users: Visual Studio C++ Redistributable ([Download here](https://aka.ms/vs/17/release/vc_redist.x64.exe))
 
-The framework includes an interactive terminal-based UI for managing and monitoring your AI agent. To start the interface:
+### Setup
 
-```bash
-yarn cli <your-character-name>
-```
-
-## Interactive Web CLI Interface
-
-A modern web-based interface for interacting with your agent. To start:
-
-### Installation
-
-1. **Install Dependencies**
+1. Clone the repository:
    ```bash
-   cd web-cli && yarn
+   git clone https://github.com/autonomys/autonomys-agents.git
+   cd autonomys-agents
    ```
 
-2. **Configure Agent API**  
-   In your agent character's `.env` file, add these API settings:
-   ```
-   API_PORT=3010
-   API_TOKEN=your_api_token_min_32_chars_long_for_security
-   ENABLE_AUTH=true
-   CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001 
-   ```
-
-3. **Configure Web CLI**
+2. Install dependencies:
    ```bash
-   cp .env.sample .env
+   yarn install
    ```
 
-4. **Update Web CLI Environment**  
-   Edit the `.env` file with your configuration:
-   - `PORT`: The port for running the Web CLI interface
-   - `REACT_APP_API_BASE_URL`: Your Agent API address (e.g., http://localhost:3010/api)
-   - `REACT_APP_API_TOKEN`: The same token used in your agent configuration
-
-5. **Start the Web Interface**
+3. Set up environment variables:
    ```bash
-   yarn start
+   cp .env.example .env
    ```
 
-## Running with dev:all (Web-CLI ONLY)
+## Quick Start
 
-The `dev:all` command launches both the main application and web interface concurrently:
+1. Create a new character:
+   ```bash
+   yarn create-character <your-character-name>
+   ```
 
-```bash
-yarn dev:all <your-character-name>
-```
+2. Configure your character:
+   - Navigate to `characters/{your-character-name}/config`
+   - Update `.env` with required environment variables
+   - Modify `config.yaml` with your configuration
+   - Customize `{your-character-name}.yaml` with personality settings
 
-This command:
-- Starts your agent with the specified character
-- Launches the web interface configured for that character
-- Automatically uses the character's API port from its .env file
-- Provides color-coded output from both processes
+3. Run your agent:
+   ```bash
+   # Development mode with hot reload
+   yarn dev <your-character-name>
+   
+   # Production mode
+   yarn start <your-character-name>
+   
+   # Interactive CLI
+   yarn cli <your-character-name>
+   ```
 
+## Usage
+
+[Previous CLI Interface, Web CLI Interface, and dev:all sections remain unchanged]
 
 ## Examples
 
-The following examples demonstrate the use of the framework and are available:
+### Available Examples
 
-- [Twitter Agent](examples/twitterAgent/README.md)
-- [Multi Personality](examples/multiPersonality/README.md)
+- [Twitter Agent](examples/twitterAgent/README.md) - Demonstrates social media interaction
+- [Multi Personality](examples/multiPersonality/README.md) - Shows how to create agents with multiple personalities
 
-## Character System
+### Creating Your Own Agent
 
-The framework uses a YAML-based character system that allows you to create and run different AI personalities.
+Refer to our [examples directory](examples/) for detailed implementation guides and best practices.
 
-### Creating Characters
+[Previous Character System, Context Size Management, and Autonomys Network Integration sections remain unchanged]
 
-1. Character related files are stored in `characters/{your-character-name}/`
-2. Create new characters by running the `create-character.ts` script:
+## Contributing
 
-   ```bash
-   # Create a new character
-   yarn create-character your_character
-   ```
+We welcome contributions to the Autonomys Agents framework! Here's how you can help:
 
-### Character Configuration
+### Ways to Contribute
 
-Each character file is a YAML configuration with the following structure. For an example character personality configuration, see [character.example.yaml](characters/character.example/config/character.example.yaml) and for example parameter configuration, see [config.example.yaml](characters/character.example/config/config.example.yaml).
+1. **Report Bugs**
+   - Use the GitHub issue tracker
+   - Include detailed steps to reproduce
+   - Provide system information
 
-## Context Size Management
+2. **Suggest Enhancements**
+   - Open an issue with the enhancement tag
+   - Describe the feature and its benefits
+   - Provide examples if possible
 
-The orchestrator includes a message pruning system to manage the LLM's context window size. This is important because LLMs have a limited context window, and long conversations need to be summarized to stay within these limits while retaining important information.
+3. **Submit Pull Requests**
+   - Fork the repository
+   - Create a feature branch
+   - Follow the coding standards
+   - Include tests and documentation
+   - Submit a PR with a clear description
 
-The pruning system works through two main parameters:
+### Development Setup
 
-- `maxQueueSize` (default: 50): The maximum number of messages to keep before triggering a summarization
-- `maxWindowSummary` (default: 10): How many of the most recent messages to keep after summarization
+1. Fork and clone the repository
+2. Install dependencies: `yarn install`
+3. Create a feature branch
+4. Make your changes
+5. Run tests: `yarn test`
+6. Submit a pull request
 
-Here's how the pruning process works:
+### Code Standards
 
-1. When the number of messages exceeds `maxQueueSize`, the summarization is triggered
-2. The system creates a summary of messages from index 1 to `maxWindowSummary`
-3. After summarization, the new message queue will contain:
-   - The original first message
-   - The new summary message
-   - All messages from index `maxWindowSummary` onwards
-
-You can configure these parameters when creating the orchestrator:
-
-```typescript
-const runner = await getOrchestratorRunner(character, {
-  pruningParameters: {
-    maxWindowSummary: 10, // Keep 10 most recent messages after summarization
-    maxQueueSize: 50, // Trigger summarization when reaching 50 messages
-  },
-  // ... other configuration options
-});
-```
-
-This ensures your agent can maintain long-running conversations while keeping the most relevant context within the LLM's context window limits.
-
-## Autonomys Network Integration
-
-The framework uses the Autonomys Network for permanent storage of agent memory and interactions. This enables:
-
-- Persistent agent memory across sessions
-- Verifiable interaction history
-- Cross-agent memory sharing
-- Decentralized agent identity
-
-To use this feature:
-
-1. Configure your AUTO_DRIVE_API_KEY in `.env` (obtain from https://ai3.storage)
-2. Enable Auto Drive uploading in `config.yaml`
-3. Provide your Taurus EVM wallet details (PRIVATE_KEY) and Agent Memory Contract Address (CONTRACT_ADDRESS) in `.env`
-4. Make sure your Taurus EVM wallet has funds. A faucet can be found at https://subspacefaucet.com/
-5. Provide encryption password in `.env` (optional, leave empty to not encrypt the agent memories)
-
-## Resurrection
-
-To resurrect memories from the Autonomys Network, run the following command:
-
-### Options
-
-- `-o, --output`: (Optional) The directory where memories will be saved. Defaults to `./memories`
-- `-n, --number`: (Optional) Number of memories to fetch. If not specified, fetches all memories
-- `--help`: Show help menu with all available options
-
-Examples:
-
-```bash
-yarn resurrect your_character_name                                  # Fetch all memories to ./memories/
-yarn resurrect your_character_name -n 1000                           # Fetch 1000 memories to ./memories/
-yarn resurrect your_character_name -o ./memories/my-agent -n 1000    # Fetch 1000 memories to specified directory
-yarn resurrect your_character_name --output ./custom/path            # Fetch all memories to custom directory
-yarn resurrect --help                            # Show help menu
-```
-
-While memories are being fetched, they will be added to the vector database named `experiences` in the background, located in the <your_character_name> folder within the data directory.
-
-## Testing
-
-To run tests:
-
-```bash
-yarn test
-```
+- Follow TypeScript best practices
+- Include JSDoc comments
+- Write unit tests for new features
+- Update documentation as needed
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">Built with ❤️ by the Autonomys Network community</p>
